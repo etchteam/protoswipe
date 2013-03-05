@@ -97,7 +97,8 @@ var pages = {
 		}
 	},
 	prevPage: function(force){
-		if ($(".current").prev(".page").length) {
+
+		if ($(".current").prev(".page").length || $(".no-tranny").length) {
 			if (force) {
 				$(".current").not(".queued").removeClass("current").prev(pages.pageSelector).addClass("current").addClass("queued");
 			}
