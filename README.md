@@ -6,6 +6,9 @@ Swipe, scroll and arrow up/down full page splash screens
 ## Demo
 Demo at http://lab.etchapps.com/protoswipe
 
+## Libraries
+Relies on jQuery and TouchSwipe
+
 ## Usage 
 Add js/protoswipe.js to your HTML page
 
