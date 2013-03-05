@@ -3,6 +3,9 @@ protoswipe
 
 Swipe, scroll and arrow up/down full page splash screens
 
+## Demo
+Demo at http://lab.etchapps.com/protoswipe
+
 ## Usage 
 Add js/protoswipe.js to your HTML page
 
@@ -15,3 +18,5 @@ We use .pages and .page by default
 Add the layout CSS (or LESS) from style.css(.less) to your CSS.
 
 Swipe and be cool.
+
+Made by Etch.
