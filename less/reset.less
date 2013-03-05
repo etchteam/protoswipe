@@ -1,0 +1,486 @@
+/* _________________________________________________
+
+G-set CSS Reset by Gavyn McKenzie
+Adapted from 320andUp by @malarkey
+21 Feb 2012
+_____________________________________________________
+
+1 ROOT
+2 HEADINGS
+3 TYPOGRAPHY
+4 LINKS
+5 FIGURES & IMAGES
+6 TABLES
+7 FORMS
+8 VENDOR-SPECIFIC 
+9 HELPER CLASSES
+
+*/
+
+html, body { 
+	margin: 0; padding: 0; 
+}
+
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, del, dfn, em, img, q, s, samp, small, strike, strong, sub, sup, tt, var, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, button, table, caption, tbody, tfoot, thead, tr, th, td { 
+	margin: 0; padding: 0; border: 0; font-weight: normal; font-style: normal; font-size: 100%; line-height: 1.4; font-family: inherit; 
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { 
+	display: block;
+}
+
+audio[controls], canvas, video { 
+	display: inline-block; 
+	*display: inline; 
+	*zoom: 1; 
+}
+
+// 1. ROOT =============================================================================
+
+html {
+	overflow-y: scroll;
+	background: rgb(255,255,255); 
+	font-size: 62.5%; 
+	-webkit-overflow-scrolling: touch; 
+	-webkit-tap-highlight-color: lighten(@basecol, 20%); 
+	-webkit-text-size-adjust: 100%; 
+	-ms-text-size-adjust: 100%;
+}
+
+body { 
+	margin: 0 auto;
+	padding: 0;
+	width: auto; 
+	.font-size();
+	.body-font;
+	color: rgb(40,40,40); 
+	background-color: transparent; 
+	.clearfix();
+}
+
+button, 
+input, 
+select, 
+textarea { 
+	.body-font; 
+	color: @darkgrey; 
+}
+
+section {
+	margin-bottom: @baseline;
+}
+
+// 2. HEADINGS (320 and Up typography defaults) ====================================================
+
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6 {
+	.header-font;
+	font-weight: bold; 
+	text-rendering: optimizelegibility; // Fix the character spacing for headings
+	line-height: @baseline;
+	color: @headingcol;
+	margin: 0 0 @baseline/2 0;
+}
+
+h1 { 
+	.font-size(32);
+	 
+}
+
+h2 { 
+	.font-size(28);
+	
+}
+
+h3 { 
+	.font-size(24);
+	 
+}
+
+h4 { 
+	.font-size(18);
+	 
+}
+
+h5 { 
+	.font-size(16);  
+}
+
+h6 { 
+	.font-size(16); 
+}
+
+// 3. TYPOGRAPHY (320 and Up typography defaults) =============================================================================
+
+p, 
+ol, 
+ul, 
+dl, 
+address { 
+	margin-bottom: @baseline; 
+	.font-size(); 
+}
+
+p {
+	-webkit-hyphens: auto;
+	-webkit-hyphenate-character: "\2010";
+	-webkit-hyphenate-limit-after: 1;
+	-webkit-hyphenate-limit-before: 3;
+	-moz-hyphens: auto;
+	hyphens: auto; 
+	text-align: inherit; 
+	
+}
+
+ul, 
+ol { 
+	margin: 0 0 @baseline 0; 
+	padding: 0 0 0 @baseline;
+	
+	ul,ol {
+		margin: 0;
+	}
+}
+
+dl { 
+	margin-bottom: @baseline;  
+}
+
+dt { 
+	font-weight: inherit; 
+}
+
+dd {
+	margin-bottom: @baseline;
+	
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+blockquote  { 
+	margin: 0 0 @baseline 0; 
+	padding: 0 0 0 @baseline; 
+	border-left: 1px solid @lightgrey;
+	font-style: italic; 
+	
+	cite {
+		font-weight: bold;
+		
+		&:before {
+			content: " - ";
+		}
+	}
+}
+
+q {
+	font-style: italic;
+}
+
+blockquote:before, 
+blockquote:after, 
+q:before, 
+q:after {
+	content: '';
+	content: none; 
+}
+
+abbr[title] { 
+	border-bottom: 1px dotted; 
+	cursor: help; 
+}
+
+b, strong { 
+	font-weight: bold; 
+}
+
+em, i, dfn { 
+	font-style: italic; 
+}
+
+hr { 
+	display: block; 
+	margin: 1em 0; 
+	padding: 0;
+	height: 1px; 
+	border: 0; 
+	border-top: 1px solid @lightgrey; 
+}
+
+ins { 
+	background-color: lighten(@basecol, 20%); 
+	color: @black; 
+	text-decoration: none; 
+}
+
+mark { 
+	background-color: lighten(@basecol, 20%); 
+	color: @black; 
+	font-style: italic; 
+	font-weight: bold; 
+}
+
+pre, 
+code, 
+kbd, 
+samp { 
+	.monospace;
+	.font-size(14);
+	line-height: @baseline; 
+	display: block;
+}
+
+pre, code { 
+	white-space: pre; 
+	white-space: pre-wrap; 
+	word-wrap: break-word; 
+}
+
+q { 
+	quotes: none; 
+}
+
+q:before, 
+q:after { 
+	content: ""; 
+	content: none; 
+}
+
+small { 
+	.font-size(14); 
+}
+
+sub, sup { 
+	.font-size(14);
+	line-height: 0; 
+	position: relative; 
+	vertical-align: baseline; 
+}
+
+sup { 
+	top: -.5em; 
+}
+
+sub { 
+	bottom: -.25em; 
+}
+
+// 4.LINKS =============================================================================
+
+a { 
+	color: @linkcol; 
+}
+
+a:visited { 
+	color: @linkcolvisited; 
+}
+
+a:hover { 
+	color: @linkcolhover; 
+}
+
+a:focus { 
+	outline: thin dotted; 
+	color: @linkcolfocus; 
+}
+
+a:hover, 
+a:active { 
+	outline: 0; 
+}
+
+// 5.FIGURES & IMAGES =============================================================================
+
+figure {
+	margin-bottom: @baseline; 
+}
+
+figure img,
+figure object,
+figure embed {
+	margin-bottom: @baseline / 2;
+	max-width: 100%; 
+}
+
+figcaption {
+	display: block;
+	font-weight: normal; 
+}
+
+img {
+	border: 0; 
+}
+
+svg:not(:root) {
+	overflow: hidden; 
+}
+
+// 6.TABLES =============================================================================
+
+table { 
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin-bottom: @baseline; 
+	width: 100%;
+	.font-size(); 
+}
+
+th, td, caption { 
+	padding: @baseline / 8 10px @baseline / 8 5px; 
+}
+
+tfoot { 
+	font-style: italic; 
+}
+
+caption { 
+	background-color: transparent; 
+}
+
+tbody tr:nth-child(odd) td {
+	background-color: lighten(@basecol, 20%); 
+}
+
+// 7.FORMS =============================================================================
+
+form { 
+	margin: 0; 
+}
+
+fieldset { 
+	margin-bottom: @baseline; 
+	padding: 0; 
+	border-width: 0;
+	
+	ul, ol {
+		list-style-type: none;
+		padding: 0;
+	}
+}
+
+legend { 
+	*margin-left: -7px; 
+	padding: 0; 
+	border-width: 0; 
+}
+
+label { 
+	font-weight: normal;
+	cursor: pointer; 
+}
+
+button, 
+input, 
+select, 
+textarea { 
+	.font-size();
+	margin: 0; 
+	vertical-align: baseline; 
+	*vertical-align: middle;
+	//margin: 2px;
+	font-family: Verdana, Arial, sans-serif; /* This stuff needs to be legible eh */
+}
+
+input,select,textarea {
+	.inset-shadow(0, 1px, 3px, 0.1);
+	/*-webkit-box-shadow: inset 0 1px 3px -1px #aaaaaa;
+	-moz-box-shadow: inset 0 1px 3px -1px #aaaaaa;
+	box-shadow: inset 0 1px 3px -1px #aaaaaa;*/
+	border: 1px solid #aaa;
+	border-color: #aaa #ddd #ddd #aaa;
+	padding: 3px 5px;
+	-moz-box-sizing: content-box;
+}
+
+button, input { 
+	line-height: normal; 
+	*overflow: visible; 
+}
+
+button, 
+input[type="button"], 
+input[type="reset"], 
+input[type="submit"],
+ { 
+	cursor: pointer;
+	// Breaks Chrome styling -webkit-appearance: button;
+}
+
+.ie6 input[type=submit] {
+	padding: 0;
+}
+
+button::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+button span, .button span {
+	display: inline;
+	margin-left: 0;
+	position: static;
+	
+}
+
+input[type="checkbox"],
+input[type="radio"] { 
+	box-sizing: border-box; 
+	
+}
+
+input[type="search"] { 
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box; 
+	box-sizing: content-box; 
+}
+
+button::-moz-focus-inner, 
+input::-moz-focus-inner { 
+	padding: 0;
+	border: 0; 
+}
+
+textarea { 
+	overflow: auto; 
+	vertical-align: top; 
+}
+
+// 8 VENDOR-SPECIFIC =============================================================================
+
+::-webkit-selection { 
+	background: @lightergrey; 
+	color: rgb(250,250,250); 
+	text-shadow: none; 
+}
+
+::-moz-selection { 
+	background: @lightergrey; 
+	color: rgb(250,250,250);  
+	text-shadow: none; 
+}
+
+::selection { 
+	background: @lightergrey; 
+	color: rgb(250,250,250);  
+	text-shadow: none; 
+}
+
+::-webkit-input-placeholder {
+	.font-size(14);
+	color: @grey;
+}
+
+input:-moz-placeholder { 
+	.font-size(14);
+	color: @grey;
+}
+
+.ie7 img,
+.iem7 img { 
+	-ms-interpolation-mode: bicubic; 
+}
+

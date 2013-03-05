@@ -1,0 +1,174 @@
+/*====================================================================
+    buttons.css
+======================================================================
+
+    @name           Button mixin
+    @author         Gavyn McKenzie
+    @copyright      Gavyn McKenzie
+    @description    Button mixins
+
+======================================================================
+    Contents
+======================================================================
+
+    - Button text
+    - Buttons
+        - Flat
+        - Gradient
+        - Plain
+    - Example usage
+
+/*====================================================================
+    Text
+======================================================================*/
+
+// Determine whether button text should be lighter or darken than the background
+.btn-text (@btn-background:#EFFAFC) when (lightness(@btn-background) >= 50%) {
+    color: darken(@btn-background,55%);
+    text-shadow:-1px -1px transparent, -1px -1px lighten(@btn-background,30%);
+
+}
+
+.btn-text (@btn-background:#EFFAFC) when (lightness(@btn-background) < 50%) {
+    color: lighten(@btn-background,60%);
+    text-shadow:-1px -1px transparent, -1px -1px darken(@btn-background,30%);
+
+}
+
+/*====================================================================
+    Buttons
+======================================================================*/
+
+.btn(@btn-background:#EFFAFC,@border:1px,@radius:3px) {
+    display: inline-block;
+    text-decoration: none;
+    font-family: inherit;
+    padding: 0.5em 1.5em;
+    border: @border solid darken(@btn-background,30%);
+    .rounded(@radius);
+    .btn-text(@btn-background);
+
+    &[disabled],
+    &[disabled]:hover,
+    &[disabled]:focus,
+    &[disabled]:active  {
+        cursor:default;
+        color: #999;
+        text-shadow: 1px 1px #FFFFFF;
+        background:#eee;
+        box-shadow:none;
+        border-color:#ddd;
+    } 
+}
+
+/*  Flat
+======================================================================*/
+
+.btn-flat(@btn-background:#EFFAFC,@border:1px,@radius:3px) {
+    .btn(@btn-background,@border,@radius);
+    background: @btn-background;
+
+    &:hover {
+        background: lighten(@btn-background,10%);
+        .btn-text(@btn-background);
+    }
+
+    &:active,
+    &:focus {
+        background: lighten(@btn-background, 5%);
+        .btn-text(@btn-background);
+    }
+
+    &:visited {
+        background: @btn-background;
+        .btn-text(@btn-background);
+    }
+}
+
+/*  Gradient
+======================================================================*/
+
+.btn-gradient(@btn-background:#EFFAFC,@border:1px,@radius:3px) {
+    .btn(@btn-background,@border,@radius);        
+    .grad-col(@btn-background, darken(@btn-background,10%), @btn-background ); 
+    -o-box-shadow:0 1px 2px #FFFFFF inset;
+    -moz-box-shadow:0 1px 2px #FFFFFF inset;
+    -webkit-box-shadow:0 1px 2px #FFFFFF inset;
+    box-shadow:0 1px 2px #FFFFFF inset;
+
+    &:hover {
+        .grad-col(lighten(@btn-background,2.5%),darken(@btn-background,7.5%), lighten(@btn-background,2.5%) );
+        .btn-text(@btn-background);
+        -o-box-shadow:0 1px 2px #FFFFFF inset, 0px 1px 3px rgba(0,0,0,0.15);
+        -moz-box-shadow:0 1px 2px #FFFFFF inset, 0px 1px 3px rgba(0,0,0,0.15);
+        -webkit-box-shadow:0 1px 2px #FFFFFF inset, 0px 1px 3px rgba(0,0,0,0.15);
+        box-shadow:0 1px 2px #FFFFFF inset, 0px 1px 3px rgba(0,0,0,0.15);
+    }
+
+    &:active,
+    &:focus {
+        background: lighten(@btn-background, 5%);
+        .btn-text(@btn-background);
+        -o-box-shadow:0px 1px 0px rgba(255,255,255,0.4);
+        -moz-box-shadow:0px 1px 0px rgba(255,255,255,0.4);
+        -webkit-box-shadow:0px 1px 0px rgba(255,255,255,0.4);
+        box-shadow:0px 1px 0px rgba(255,255,255,0.4);
+    }
+
+    &:visited {
+        background: @btn-background;
+        .btn-text(@btn-background);
+    }
+}
+
+/*  Plain
+======================================================================*/
+
+.btn-plain(@btn-background:#219BB1,@border:1px,@radius:3px) {
+    .btn(@btn-background,0px,0px);
+    background: none;
+    border: 0px none;
+    text-shadow: none;
+    color: @btn-background;
+
+    &:hover {
+        color: darken(@btn-background, 5%);
+    }
+
+    &:visited {
+        color: @btn-background;
+    }
+}
+
+/*====================================================================
+    Size modifiers
+======================================================================*/
+
+.btn-small {
+    .font-size(0.8);
+}
+
+.btn-large {
+    .font-size(1.2);
+}
+
+/*====================================================================
+    Example usage
+======================================================================*/
+
+
+.btn-primary {
+    .btn-gradient();
+}
+
+.btn-secondary {
+    .btn-gradient(#8BDC1E,1px,3px);
+}
+
+.btn-tertiary {
+    .btn-flat(#00578A);
+}
+
+.btn-special {
+    .btn-plain();
+}

@@ -1,0 +1,86 @@
+/*====================================================================
+    grid.css
+======================================================================
+
+    @name           Grid mixins
+    @author         Gavyn McKenzie
+    @copyright      Gavyn McKenzie
+    @description    Grid mixins
+    @credit         Inspired by http://builtbyboon.com/posed/Proportional-Grids/
+
+    The grid can either be used as mixins via .grid-col or you can use
+    the grid generator to create css for a grid.
+
+======================================================================
+    Contents
+======================================================================
+
+    - Generic grid classes
+    - Grid generator
+    - Responsive media query prefixed grid example
+
+/*====================================================================
+    Generic grid classes
+======================================================================*/
+
+@gutter :1em;
+
+.grid-wrap {
+    margin-left: -@gutter;
+    overflow: hidden;
+    clear: both;
+}
+
+.grid {
+    float: left;
+    padding-left: @gutter;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+//Blocked grid styling
+.blocked {
+    padding: @gutter;
+    background: #F2F2F2;
+    margin-bottom: @gutter;
+}
+
+/*====================================================================
+    Grid generator
+======================================================================*/
+
+//Calculates percentage width
+.grid-col(@span,@numcols) {
+    width: percentage(@span/@numcols);
+}
+
+//Recursive mixin function to generate class names
+.grid-generator(@span: 12, @numcols: 12, @mq: '') when (@span > 0) {
+    (~".@{mq}g-@{span}-@{numcols}") {
+        .grid-col(@span, @numcols);
+    }
+    .grid-generator(@span - 1,@numcols,@mq);
+}
+
+//Saftey for when @ span = 0
+.grid-generator(0,@numcols,@mq) {}
+
+//generate a 12 column grid
+.grid-generator();
+
+/*====================================================================
+    Responsive mq grid class generator (using desktop first for demo purposes, prefer mobile first)
+    Add prefixes to target speicif media queries.
+======================================================================*/
+
+@media (max-width: 40em) {
+    .grid-generator(2,2,'mq1-');
+}
+
+@media (max-width: 30em) {
+    .grid-generator(1,1,'mq2-');
+}
+
+
+
