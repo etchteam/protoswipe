@@ -45,7 +45,6 @@ var pages = {
 		// How about keyboard support?
 
 		$(document).keydown(function(e){
-			console.log(e.keyCode);
 			if (e.keyCode == 40) {
 				pages.nextPage();
 			} else if (e.keyCode == 38) {
@@ -59,8 +58,6 @@ var pages = {
 		// cross-browser wheel delta
 		var e = window.event || e; // old IE support
 		var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-
-		console.log(delta);
 
 		if (delta == 1) {
 
